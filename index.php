@@ -14,6 +14,13 @@
             $idTask = filter_var($_GET['cattr'], FILTER_SANITIZE_STRING);
             $editMode = true;            
         }
+
+        $loadMode = false;
+        if(isset($_GET['l']) && ($_GET['l'] == 202 || $_GET['l'] == 408)){
+            $mode = filter_var($_GET['l'], FILTER_SANITIZE_STRING);
+            $toLoad = ($mode == 202) ? 0 : 1;
+            $loadMode = true;
+        }
         
         $userDevice = new UserDevice();
         $userIp = $userDevice->getUserIP();

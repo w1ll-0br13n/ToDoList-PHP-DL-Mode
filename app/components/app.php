@@ -23,8 +23,9 @@
         if(isset($dataTasks) && !$editMode){
             $totalItems = 0;
             foreach ($dataTasks as $value) {
-                $totalItems++;
                 $date = new DateTime($value['first_created_at']);
+                if(($loadMode && $value['first_status'] == $toLoad) || (!$loadMode)){
+                    $totalItems++;
     ?>
     <li class="card">
         <div class="cb-container"><input class="cb-input" type="checkbox" cattr="<?=$value['first_id']?>" <?=($value['first_status'] != 0) ? "checked" : ""?> onclick="toogleCheck(this)"><span class="check"></span></div>
@@ -37,6 +38,7 @@
         <button cattr="<?=$value['first_id']?>" class="actions action-delete delete-task"><i class="feather icon-trash"></i></button>
     </li>
     <?php
+                }
             }
         }
     ?>
@@ -44,9 +46,9 @@
 <div class="card stat">
     <p class="corner"><span id="items-left"><?=(isset($totalItems)) ? $totalItems : '0'?></span> items</p>
     <div class="filter">
-        <button id="all" class="on">All</button>
-        <button id="active">Active</button>
-        <button id="completed">Completed</button>
+        <a href="<?=$config['Home']?>"><button id="all" <?=(!$loadMode) ? 'class="on"' : ''?>>All</button></a>
+        <a href="?l=202"><button id="active" <?=($loadMode && (int)$mode == 202) ? 'class="on"' : ''?>>Active</button></a>
+        <a href="?l=408"><button id="completed" <?=($loadMode && (int)$mode == 408) ? 'class="on"' : ''?>>Completed</button></a>
     </div>
     <div class="corner">
         <button id="clear-completed">Clear</button>
