@@ -8,6 +8,13 @@
     $conn = $db->connect();
 
     if($conn){
+        
+        $editMode = false;
+        if(isset($_GET['cattr'])){
+            $idTask = filter_var($_GET['cattr'], FILTER_SANITIZE_STRING);
+            $editMode = true;            
+        }
+        
         $userDevice = new UserDevice();
         $userIp = $userDevice->getUserIP();
         $userTerminal = $userDevice->getUserTerminal();
@@ -35,13 +42,17 @@
                 $config['Databases'][0], // Choose todolist database on config file
                 "user_tasks", 
                 null, 
-                [$userData['id']], 
-                ['(id_user = ?)']
+                ($editMode) ? [$userData['id'], $idTask] : [$userData['id']],
+                ($editMode) ? ['id_user = ?', 'id_task = ?'] : ['(id_user = ?)']
             );
 
             if($taskExist->exist()){
                 $dataTasks = $taskExist->readJoin(['tasks'], [['id_task', 'id']], [['id'], ['id', 'title', 'status', 'description', 'created_at']]);
-
+                if($editMode){
+                    $dataTasks = $dataTasks->fetch();
+                    $title = $dataTasks['first_title'];
+                    $description = $dataTasks['first_description'];
+                }
             }
         }
     }

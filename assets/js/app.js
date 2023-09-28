@@ -14,20 +14,14 @@ function main() {
         );
     });
 
-    function removeErrorMessage(){
-        setTimeout(function(){
-            $(".error-text").html('');
-        }, 4000);
-    }
+    $("#add-task").click(() => {
+        taskHandler('app/ajax/task/add.task.php')
+    });
+    $("#update-task").click(() => {
+        taskHandler('app/ajax/task/update.task.php', false)
+    });
 
-    function removeLoader(){
-        setTimeout(function(){
-            $(".card-loader").remove();
-        }, 500)
-    }
-
-    $("#addTaskForm").submit(function(event){
-        event.preventDefault();
+    function taskHandler(url, create=true){
 
         const title = $("#title").val();
         const desc = $("#desc").val();
@@ -51,17 +45,23 @@ function main() {
             error = true;
         }
 
+        var cattr = (!create) ? $("#update-task").attr('cattr') : ''; 
+
         if(!error){
-            var formData = $(this).serialize();
             $.ajax({
                 type: 'POST',
-                url: 'app/ajax/task/add.task.php',
-                data: formData,
+                url: url,
+                data: (create) ? {title : title, description : desc} : {title : title, description : desc, cattr : cattr},
                 beforeSend: function() {
                     $(".add").append('<div class="card-loader"><i class="feather icon-radio rotate-refresh"></i></div>');
                 },
                 success: function() {
-                    location.reload();
+                    if(create) {
+                        location.reload();
+                    }else{
+                        path = window.location.pathname;
+                        window.location.href = path;
+                    }
                 },
                 error: function() {
                     removeLoader();
@@ -69,7 +69,19 @@ function main() {
             });
         }
         
-    });
+    }
+
+    function removeErrorMessage(){
+        setTimeout(function(){
+            $(".error-text").html('');
+        }, 4000);
+    }
+
+    function removeLoader(){
+        setTimeout(function(){
+            $(".card-loader").remove();
+        }, 500)
+    }
 }
 
 function toogleCheck(element){

@@ -93,6 +93,7 @@
                     $arrToString .= (sizeof($this->conditions) > 1 && ($i < sizeof($this->conditions) - 1)) ? " AND " : "";
                 }
                 $query = $this->conn->prepare('SELECT * FROM ' . $this->table . $arrToString);
+                
                 $query->execute($this->values);
 
                 return ($query) ? $query : false;
@@ -132,8 +133,8 @@
                 }
                 for ($j=0; $j < sizeof($this->conditions); $j++) { 
                     $sql .= " AND " . $this->conditions[$j];
-                    $sql .= " ORDER BY main.created_at DESC";
                 }
+                $sql .= " ORDER BY main.created_at DESC";
                 
                 $query = $this->conn->prepare($sql);
                 $query->execute($this->values);
