@@ -106,8 +106,8 @@
                 <label for="username">Username</label>
                 <input type="text" name="username" class="txt-input" placeholder="Mr Bigfoot" spellcheck="false" autocomplete="off" id="title" required />
                 <span class="error-text"></span>
+                <button>OK</button>
             </div>
-            <button>OK</button>
         </form>
     </div>
     <?php

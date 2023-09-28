@@ -106,13 +106,6 @@ body {
 
 .form-m .wrap img {
   height: 60px;
-  margin-left: -4.5rem;
-}
-
-.form-m form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .form-m form label {
@@ -136,7 +129,7 @@ body {
   border-radius: 100%;
   background: var(--color-blue);
   color: var(--color-white);
-  margin: 3.2rem 0 0 0.7rem;
+  margin: 1rem auto;
 }
 
 /* slightly transparent fallback */
