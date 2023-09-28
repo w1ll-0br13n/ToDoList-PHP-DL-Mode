@@ -57,7 +57,7 @@
                 
                 if(isset($_GET['reset']) && ((int)$_GET['reset'] == 200)){
                     $dataTasksToDelete = $taskExist->readAlone();
-                    foreach ($dataTasksToDelete->fetch() as $value) {
+                    foreach ($dataTasksToDelete as $value) {
                         $taskResetAll = new Task(
                             $conn,
                             $config['Databases'][0],
@@ -68,6 +68,7 @@
                         );
                         $taskResetAll->delete();
                     }
+                    header('location: ' . $config['Home']);
                 }
 
                 $dataTasks = $taskExist->readJoin(['tasks'], [['id_task', 'id']], [['id'], ['id', 'title', 'status', 'description', 'created_at']]);
