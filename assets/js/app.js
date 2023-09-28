@@ -9,13 +9,6 @@ function main() {
         } else {
             setTheme('dark');
         }
-        const themeImg = this.children[0];
-        themeImg.setAttribute(
-        "src",
-        themeImg.getAttribute("src") === "./assets/icons/icon-sun.svg"
-            ? "./assets/icons/icon-moon.svg"
-            : "./assets/icons/icon-sun.svg"
-        );
 
     });
     
@@ -42,6 +35,12 @@ function setTheme(theme) {
   document.body.className = theme;
   // Store the user's preference in local storage
   localStorage.setItem('theme', theme);
+  $("#switch-theme img").attr(
+    "src",
+    theme === "light"
+        ? "./assets/icons/icon-moon.svg"
+        : "./assets/icons/icon-sun.svg"
+    );
 }
 
 function taskHandler(element, url, createme=false, updateme=false, deleteme=false){
