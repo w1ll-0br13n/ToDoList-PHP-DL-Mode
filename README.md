@@ -7,7 +7,7 @@
 - Download the database.sql file located at app/database.
 - Import the sql file into your phpmyadmin.
 - Open the config file (located at app/config.php): change your "Home" path to the path of application.
-- Open the helper file (located at app/helpers/helpers.php): Put you current database credentials and configurations.
+- Open the helper (located at app/helpers/helpers.php): Put you current database credentials and configurations.
 - It is all done. Just copy and paste the previous home link of the application on your browser.
 
 ### Full screenshots
@@ -34,7 +34,7 @@
 
 - At 375px :iphone:
 
-| Dark                                                                       | Light                                                                       |
+| Light                                                                       | Dark                                                                       |
 | -------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | <img src="./assets/images/phone-1.png" width="240" title="At 375px"> | <img src="./assets/images/phone-2.png" width="240" title="At 375px"> |
 
