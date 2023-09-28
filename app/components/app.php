@@ -51,6 +51,6 @@
         <a href="?l=408"><button id="completed" <?=($loadMode && (int)$mode == 408) ? 'class="on"' : ''?>>Completed</button></a>
     </div>
     <div class="corner">
-        <button id="clear-completed">Clear</button>
+        <a href="?reset=200"><button id="clear-completed">Clear</button></a>
     </div>
 </div>

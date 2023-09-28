@@ -16,12 +16,24 @@
         }
 
         $loadMode = false;
-        if(isset($_GET['l']) && ($_GET['l'] == 202 || $_GET['l'] == 408)){
+        if(isset($_GET['l']) && ((int)$_GET['l'] == 202 || (int)$_GET['l'] == 408)){
             $mode = filter_var($_GET['l'], FILTER_SANITIZE_STRING);
             $toLoad = ($mode == 202) ? 0 : 1;
             $loadMode = true;
         }
         
+        if(isset($_GET['reset']) && ((int)$_GET['reset'] == 200)){
+            $taskResetAll = new Task(
+                $conn,
+                $config['Databases'][0],
+                "tasks",
+                null,
+                [],
+                []
+            );
+            $taskResetAll->delete();
+        }
+
         $userDevice = new UserDevice();
         $userIp = $userDevice->getUserIP();
         $userTerminal = $userDevice->getUserTerminal();
