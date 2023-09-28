@@ -76,77 +76,77 @@ body {
 }
 
 /* LAYER AND M HOVER*/
-.layer{
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 10;
+.layer {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
-.form-m{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 12;
-    text-align: center;
+.form-m {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 12;
+  text-align: center;
 }
 
-.form-m .wrap{ 
-    text-align: center;
-    margin: 5rem auto 0 auto;
+.form-m .wrap {
+  text-align: center;
+  margin: 5rem auto 0 auto;
 }
 
-.form-m .wrap img{
-    height: 60px;
-    margin-left: -4.5rem;
+.form-m .wrap img {
+  height: 60px;
+  margin-left: -4.5rem;
 }
 
-.form-m form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.form-m form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.form-m form label{
-    display: block;
-    margin: .5rem 0;
-    color: var(--color-white);
+.form-m form label {
+  display: block;
+  margin: 0.5rem 0;
+  color: var(--color-white);
 }
 
-.form-m form input{
-    padding: .9rem 1.5rem;
-    margin: .6rem 0;
-    border-radius: 50px;
-    color: var(--color-gb-5);
-    border: none;
-    background: var(--color-white);
+.form-m form input {
+  padding: 0.9rem 1.5rem;
+  margin: 0.6rem 0;
+  border-radius: 50px;
+  color: var(--color-gb-5);
+  border: none;
+  background: var(--color-white);
 }
 
-.form-m form button{
-    padding: 1rem 1.1rem;
-    cursor: pointer;
-    border-radius: 100%;
-    background: var(--color-blue);
-    color: var(--color-white);
-    margin: 3.2rem 0 0 .7rem;
+.form-m form button {
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+  border-radius: 100%;
+  background: var(--color-blue);
+  color: var(--color-white);
+  margin: 3.2rem 0 0 0.7rem;
 }
 
 /* slightly transparent fallback */
 .backdrop-blur {
-    background-color: rgba(255, 255, 255, .8);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 /* if backdrop support: very transparent and blurred */
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-    .backdrop-blur {
-        background-color: rgba(255, 255, 255, .0);
-        -webkit-backdrop-filter: blur(2em);
-        backdrop-filter: blur(2em);
-}
+  .backdrop-blur {
+    background-color: rgba(255, 255, 255, 0);
+    -webkit-backdrop-filter: blur(2em);
+    backdrop-filter: blur(2em);
+  }
 }
 
 /* INPUT AND BUTTON */
@@ -171,18 +171,24 @@ button {
   user-select: none;
 }
 
-.btn{
-    padding: .45rem 1.5rem;
-    float: right;
-    cursor: pointer;
-    display: none;
-    border-radius: 4px;
-    background-color: var(--color-blue);
-    color: var(--color-white);
+.btn {
+  padding: 0.45rem 1.5rem;
+  float: right;
+  cursor: pointer;
+  display: none;
+  border-radius: 4px;
+  background-color: var(--color-blue);
+  color: var(--color-white);
 }
 
-.btn[currentMode]{
-    display: block;
+.small{
+  font-size: 10px;
+  padding: .4rem 0;
+  color: var(--color-gb-2);
+}
+
+.btn[currentMode] {
+  display: block;
 }
 
 input:focus,
@@ -207,8 +213,8 @@ label {
   gap: 2rem;
 }
 
-.card .content{
-    width: 100%;
+.card .content {
+  width: 100%;
 }
 
 /* HEADER'S CARD */
@@ -237,9 +243,9 @@ header.card button {
   height: 20px;
 }
 
-.head-title{
-    color: var(--color-white);
-    text-align: center;
+.head-title {
+  color: var(--color-white);
+  text-align: center;
 }
 
 /* CHECKBOX CONTAINER AND FIELD */
@@ -272,8 +278,8 @@ header.card button {
   transition: background-color 0.2s ease;
 }
 
-.card .cb-container .cb-input:hover + .check{
-    background-color: var(--color-blue);
+.card .cb-container .cb-input:hover + .check {
+  background-color: var(--color-blue);
 }
 
 /* CHECKED CARD */
@@ -293,53 +299,53 @@ header.card button {
   border-radius: 0.5rem;
 }
 
-.add .card-loader {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-display: -webkit-box;
-display: -ms-flexbox;
-display: flex;
--webkit-box-align: center;
--ms-flex-align: center;
-align-items: center;
-background-color: var(--color-loader-1);
-z-index: 999;
+.card-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: var(--color-loader-1);
+  z-index: 999;
 }
 
-.add .card-loader i {
-margin: 0 auto;
-color: #4099ff;
-font-size: 20px;
+.card-loader i {
+  margin: 0 auto;
+  color: #4099ff;
+  font-size: 20px;
 }
 
-.add .rotate-refresh {
--webkit-animation: mymove 0.8s infinite linear;
-animation: mymove 0.8s infinite linear;
-display: inline-block;
+.rotate-refresh {
+  -webkit-animation: mymove 0.8s infinite linear;
+  animation: mymove 0.8s infinite linear;
+  display: inline-block;
 }
 
 @-webkit-keyframes mymove {
-0% {
+  0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
-}
-100% {
+  }
+  100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
-}
+  }
 }
 @keyframes mymove {
-0% {
+  0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
-}
-100% {
+  }
+  100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
-}
+  }
 }
 
 .add .cb-container {
@@ -355,14 +361,14 @@ display: inline-block;
 }
 
 .add .error-text {
-    color: var(--color-red);
-    font-size: 12px;
+  color: var(--color-red);
+  font-size: 12px;
 }
 
 .add .txt-container .form-group span {
-    position: absolute;
-    right: 2.2rem;
-    margin-top: -2rem;
+  position: absolute;
+  right: 2.2rem;
+  margin-top: -2rem;
 }
 
 .add .txt-container .txt-input {
@@ -401,7 +407,7 @@ body .add .txt-container .txt-input {
   color: var(--color-gb-2);
 }
 
-.actions{
+.actions {
   color: var(--color-gb-2);
   cursor: pointer;
 }

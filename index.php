@@ -40,7 +40,7 @@
             );
 
             if($taskExist->exist()){
-                $dataTasks = $taskExist->readJoin(['tasks'], [['id_task', 'id']]);
+                $dataTasks = $taskExist->readJoin(['tasks'], [['id_task', 'id']], [['id'], ['id', 'title', 'status', 'description', 'created_at']]);
 
             }
         }

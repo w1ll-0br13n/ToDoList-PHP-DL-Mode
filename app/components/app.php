@@ -21,13 +21,17 @@
 <ul class="todos">
     <?php
         if(isset($dataTasks)){
+            $totalItems = 0;
             foreach ($dataTasks as $value) {
+                $totalItems++;
+                $date = new DateTime($value['first_created_at']);
     ?>
     <li class="card">
-        <div class="cb-container"><input class="cb-input" type="checkbox"><span class="check"></span></div>
+        <div class="cb-container"><input class="cb-input" type="checkbox" cattr="<?=$value['first_id']?>" <?=($value['first_status'] != 0) ? "checked" : ""?> onclick="toogleCheck(this)"><span class="check"></span></div>
         <div class="content">
-            <p class="item"><?=$value['title']?></p>
-            <p class="desc"><?=$value['description']?></p>
+            <p class="item"><?=$value['first_title']?></p>
+            <p class="desc"><?=$value['first_description']?></p>
+            <p class="small">Created • <?=$date->format('d M Y')?> • </p>
         </div>
         <a href="?cattr=<?=0?>"><button class="actions action-edit"><i class="feather icon-edit"></i></button></a>
         <button cattr="0" class="actions action-delete"><i class="feather icon-trash"></i></button>
@@ -38,7 +42,7 @@
     ?>
 </ul>
 <div class="card stat">
-    <p class="corner"><span id="items-left">0</span> items</p>
+    <p class="corner"><span id="items-left"><?=(isset($totalItems)) ? $totalItems : '0'?></span> items</p>
     <div class="filter">
         <button id="all" class="on">All</button>
         <button id="active">Active</button>

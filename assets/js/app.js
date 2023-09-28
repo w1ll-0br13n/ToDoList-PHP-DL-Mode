@@ -71,3 +71,25 @@ function main() {
         
     });
 }
+
+function toogleCheck(element){
+    const status = $(element).attr('checked');
+    const cattr = $(element).attr('cattr');
+    
+    var newStatus = (typeof status !== 'undefined' && status !== false) ? false : true;
+    $.ajax({
+        type: 'POST',
+        url: 'app/ajax/task/status.task.php',
+        data: {newStatus : newStatus, cattr : cattr},
+        beforeSend: function() {
+            $(".todos").append('<div class="card-loader"><i class="feather icon-radio rotate-refresh"></i></div>');
+        },
+        success: function() {
+            location.reload();
+        },
+        error: function() {
+            removeLoader();
+        }
+    });
+
+};

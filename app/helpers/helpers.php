@@ -98,7 +98,7 @@
                 return ($query) ? $query : false;
         }
         
-        public function readJoin($tablesToJoin, $relations)
+        public function readJoin($tablesToJoin, $relations, $toBeSelected = [[]])
         {
             
                 $letters = [
@@ -111,7 +111,20 @@
                     'sixth',
                     'seventh'
                 ];
-                $sql = "SELECT * FROM " . $this->table . " AS main ";
+                $arrToStringToBeSelected = "";
+                if(sizeof($toBeSelected) > 0 && sizeof($toBeSelected[0]) > 0){
+                    for ($i=0; $i < sizeof($toBeSelected); $i++) { 
+                        for ($j=0; $j < sizeof($toBeSelected[$i]); $j++) { 
+                            if($i > 0){
+                                $arrToStringToBeSelected .= ", ";
+                            }
+                            $arrToStringToBeSelected .= $letters[$i] . "." . $toBeSelected[$i][$j] . " AS " . $letters[$i] . "_" . $toBeSelected[$i][$j];
+                        }
+                    }
+                }else{
+                    $arrToStringToBeSelected = "*";
+                }
+                $sql = 'SELECT ' . $arrToStringToBeSelected . ' FROM ' . $this->table . ' AS main ';
                 for ($i=0; $i < sizeof($tablesToJoin); $i++) { 
                     $sql .= " INNER JOIN " . $tablesToJoin[$i];
                     $sql .= " AS " . $letters[$i+1];
@@ -143,9 +156,9 @@
                     $arrToStringCondition .= $this->conditions[$i];
                     $arrToStringCondition .= (sizeof($this->conditions) > 1 && ($i < sizeof($this->conditions) - 1)) ? " AND " : "";
                 }
-                
+                    
                 $query = $this->conn->prepare('UPDATE ' . $this->table . ' SET ' . $arrToString . ' ' . $arrToStringCondition);
-
+                
                 $query->execute($this->values);
 
                 $this->last_id = $this->values[sizeof($this->values) - 1];
