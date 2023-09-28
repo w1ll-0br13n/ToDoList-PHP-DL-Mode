@@ -21,6 +21,8 @@
             $toLoad = ($mode == 202) ? 0 : 1;
             $loadMode = true;
         }
+
+        $resetMode = (isset($_GET['reset']) && ((int)$_GET['reset'] == 200)) ? true : false;
         
         $userDevice = new UserDevice();
         $userIp = $userDevice->getUserIP();
@@ -55,7 +57,7 @@
 
             if($taskExist->exist()){
                 
-                if(isset($_GET['reset']) && ((int)$_GET['reset'] == 200)){
+                if($resetMode){
                     $dataTasksToDelete = $taskExist->readAlone();
                     foreach ($dataTasksToDelete as $value) {
                         $taskResetAll = new Task(
@@ -68,7 +70,6 @@
                         );
                         $taskResetAll->delete();
                     }
-                    header('location: ' . $config['Home']);
                 }
 
                 $dataTasks = $taskExist->readJoin(['tasks'], [['id_task', 'id']], [['id'], ['id', 'title', 'status', 'description', 'created_at']]);
@@ -77,6 +78,9 @@
                     $title = $dataTasks['first_title'];
                     $description = $dataTasks['first_description'];
                 }
+            }
+            if($resetMode){
+                header('location: ' . $config['Home']);
             }
         }
     }
