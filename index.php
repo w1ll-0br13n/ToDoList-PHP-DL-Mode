@@ -22,18 +22,6 @@
             $loadMode = true;
         }
         
-        if(isset($_GET['reset']) && ((int)$_GET['reset'] == 200)){
-            $taskResetAll = new Task(
-                $conn,
-                $config['Databases'][0],
-                "tasks",
-                null,
-                [],
-                []
-            );
-            $taskResetAll->delete();
-        }
-
         $userDevice = new UserDevice();
         $userIp = $userDevice->getUserIP();
         $userTerminal = $userDevice->getUserTerminal();
@@ -66,6 +54,22 @@
             );
 
             if($taskExist->exist()){
+                
+                if(isset($_GET['reset']) && ((int)$_GET['reset'] == 200)){
+                    $dataTasksToDelete = $taskExist->readAlone();
+                    foreach ($dataTasksToDelete->fetch() as $value) {
+                        $taskResetAll = new Task(
+                            $conn,
+                            $config['Databases'][0],
+                            "tasks",
+                            null,
+                            [$value['id_task']],
+                            ['id = ?']
+                        );
+                        $taskResetAll->delete();
+                    }
+                }
+
                 $dataTasks = $taskExist->readJoin(['tasks'], [['id_task', 'id']], [['id'], ['id', 'title', 'status', 'description', 'created_at']]);
                 if($editMode){
                     $dataTasks = $dataTasks->fetch();
