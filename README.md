@@ -36,14 +36,14 @@
 
 | Dark                                                                       | Light                                                                       |
 | -------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| <img src="./assets/images/phone-2.png" width="240" title="At 375px"> | <img src="./assets/images/phone-2.png" width="240" title="At 375px"> |
+| <img src="./assets/images/phone-1.png" width="240" title="At 375px"> | <img src="./assets/images/phone-2.png" width="240" title="At 375px"> |
 
 ---
 
 <!-- HTML content -->
 
 <p align="center">WILL J. KEMMOE</p>
-<p align="center"><a href="https://mozartdevs.com" title="Portfolio">Portfolio</a> • <a href="https://www.facebook.com/malucie24" title="AI Lucie">&nbsp;&nbsp;My AI</a></p>
+<p align="center"><a href="https://mozartdevs.com" title="Portfolio">Portfolio</a> • <a href="https://www.facebook.com/malucie24" title="AI Lucie">My AI</a></p>
 
 [link]: https://mozartdevs.com/todo-list "Live Demo"
 [at1500px-l]: ./assets/images/laptop-1.png "At 1500px"
