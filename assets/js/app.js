@@ -15,7 +15,7 @@ function main() {
     });
 
     $("#add-task").click(function() {
-        taskHandler(this, 'app/ajax/task/add.task.php')
+        taskHandler(this, 'app/ajax/task/add.task.php', true)
     });
     
     $("#update-task").click(function() {
@@ -27,30 +27,29 @@ function main() {
     });
 }
 
-function taskHandler(element, url, createme=true, updateme=false, deleteme=false){
+function taskHandler(element, url, createme=false, updateme=false, deleteme=false){
 
-    if(createme || updateme){
-        const title = $("#title").val();
-        const desc = $("#desc").val();
+    error = false;
+    const title = $("#title").val();
+    const desc = $("#desc").val();
 
-        var error = false;
-        if(title == ""){
-            $(".form-group.title span").html("Required field");
-            removeErrorMessage();
-            error = true;
-        }
+    var error = false;
+    if(title == "" && createme){
+        $(".form-group.title span").html("Required field");
+        removeErrorMessage();
+        error = true;
+    }
 
-        if(title.length > 255){
-            $(".form-group.title span").html("Title too long. (max: 255)");
-            removeErrorMessage();
-            error = true;
-        }
+    if(title.length > 255){
+        $(".form-group.title span").html("Title too long. (max: 255)");
+        removeErrorMessage();
+        error = true;
+    }
 
-        if(desc.length > 500){
-            $(".form-group.desc span").html("Description too long. (max: 500)");
-            removeErrorMessage();
-            error = true;
-        }
+    if(desc.length > 500){
+        $(".form-group.desc span").html("Description too long. (max: 500)");
+        removeErrorMessage();
+        error = true;
     }
 
     var cattr = (!createme) ? $("#update-task").attr('cattr') : ''; 
