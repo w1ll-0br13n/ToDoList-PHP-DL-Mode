@@ -44,7 +44,7 @@
             "users", 
             null, 
             [$userIp, $userTerminal], 
-            ['(ip_address = ? OR device = ?)']
+            ['ip_address = ?', 'device = ?']
         );
 
         $userData = $usernameExist->readAlone()->fetch();
