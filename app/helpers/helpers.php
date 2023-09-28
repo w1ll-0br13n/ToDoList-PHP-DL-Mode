@@ -187,6 +187,16 @@
         }
     }
 
+    class Task extends Cruds
+    {
+                
+    }
+
+    class UserTask extends Cruds
+    {
+
+    }
+
     class User extends Cruds
     {
 
