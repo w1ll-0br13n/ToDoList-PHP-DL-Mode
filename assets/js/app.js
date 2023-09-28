@@ -14,15 +14,22 @@ function main() {
         );
     });
 
-    $("#add-task").click(() => {
-        taskHandler('app/ajax/task/add.task.php')
+    $("#add-task").click(function() {
+        taskHandler(this, 'app/ajax/task/add.task.php')
     });
-    $("#update-task").click(() => {
-        taskHandler('app/ajax/task/update.task.php', false)
+    
+    $("#update-task").click(function() {
+        taskHandler(this, 'app/ajax/task/update.task.php', false, true)
     });
+    
+    $(".delete-task").click(function() {
+        taskHandler(this, 'app/ajax/task/remove.task.php', false, false, true)     
+    });
+}
 
-    function taskHandler(url, create=true){
+function taskHandler(element, url, createme=true, updateme=false, deleteme=false){
 
+    if(createme || updateme){
         const title = $("#title").val();
         const desc = $("#desc").val();
 
@@ -44,44 +51,64 @@ function main() {
             removeErrorMessage();
             error = true;
         }
-
-        var cattr = (!create) ? $("#update-task").attr('cattr') : ''; 
-
-        if(!error){
-            $.ajax({
-                type: 'POST',
-                url: url,
-                data: (create) ? {title : title, description : desc} : {title : title, description : desc, cattr : cattr},
-                beforeSend: function() {
-                    $(".add").append('<div class="card-loader"><i class="feather icon-radio rotate-refresh"></i></div>');
-                },
-                success: function() {
-                    if(create) {
-                        location.reload();
-                    }else{
-                        path = window.location.pathname;
-                        window.location.href = path;
-                    }
-                },
-                error: function() {
-                    removeLoader();
-                }
-            });
-        }
-        
     }
 
-    function removeErrorMessage(){
-        setTimeout(function(){
-            $(".error-text").html('');
-        }, 4000);
+    var cattr = (!createme) ? $("#update-task").attr('cattr') : ''; 
+
+    var formData;
+
+    if(createme)
+        formData = {title : title, description : desc}
+
+    if(updateme)
+        formData = {title : title, description : desc, cattr : cattr}
+
+    if(deleteme){
+        cattr = $(element).attr('cattr');
+        formData = {cattr : cattr};
     }
 
-    function removeLoader(){
-        setTimeout(function(){
-            $(".card-loader").remove();
-        }, 500)
+    if(!error){
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: formData,
+            beforeSend: function() {
+                if(!deleteme)
+                    $(".add").append('<div class="card-loader"><i class="feather icon-radio rotate-refresh"></i></div>')
+            },
+            success: function(response) {
+
+                if(createme)
+                    location.reload()
+                
+                if(updateme){
+                    path = window.location.pathname;
+                    window.location.href = path;
+                };
+                
+                if(deleteme)
+                    $(element).parent().remove()
+
+            },
+            error: function() {
+                removeLoader();
+            }
+        });
     }
+    
+}
+
+function removeErrorMessage(){
+    setTimeout(function(){
+        $(".error-text").html('');
+    }, 4000);
+}
+
+function removeLoader(){
+    setTimeout(function(){
+        $(".card-loader").remove();
+    }, 500)
 }
 
 function toogleCheck(element){

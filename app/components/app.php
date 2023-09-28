@@ -34,7 +34,7 @@
             <p class="small">Created • <?=$date->format('d M Y')?> • </p>
         </div>
         <a href="?cattr=<?=$value['first_id']?>"><button class="actions action-edit"><i class="feather icon-edit"></i></button></a>
-        <button cattr="<?=$value['first_id']?>" class="actions action-delete"><i class="feather icon-trash"></i></button>
+        <button cattr="<?=$value['first_id']?>" class="actions action-delete delete-task"><i class="feather icon-trash"></i></button>
     </li>
     <?php
             }
