@@ -4,15 +4,26 @@ $(document).ready(main)
 function main() {
     /* switch theme light-dark */
     $("#switch-theme").click(function(){
-        $("body").toggleClass("light");
+        if (document.body.classList.contains('dark')) {
+            setTheme('light');
+        } else {
+            setTheme('dark');
+        }
         const themeImg = this.children[0];
-        themeImg.setAttr(
+        themeImg.setAttribute(
         "src",
-        themeImg.getAttr("src") === "./assets/icons/icon-sun.svg"
+        themeImg.getAttribute("src") === "./assets/icons/icon-sun.svg"
             ? "./assets/icons/icon-moon.svg"
             : "./assets/icons/icon-sun.svg"
         );
+
     });
+    
+    const userPreference = localStorage.getItem('theme');
+
+    if (userPreference) {
+        setTheme(userPreference);
+    }
 
     $("#add-task").click(function() {
         taskHandler(this, 'app/ajax/task/add.task.php', true)
@@ -25,6 +36,12 @@ function main() {
     $(".delete-task").click(function() {
         taskHandler(this, 'app/ajax/task/remove.task.php', false, false, true)     
     });
+}
+
+function setTheme(theme) {
+  document.body.className = theme;
+  // Store the user's preference in local storage
+  localStorage.setItem('theme', theme);
 }
 
 function taskHandler(element, url, createme=false, updateme=false, deleteme=false){
