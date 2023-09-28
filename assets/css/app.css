@@ -1,0 +1,571 @@
+:root {
+  --ff-sans: "Helvetica Now Display DW", sans-serif;
+  --base-font: 1.6rem;
+  --fw-normal: 400;
+  --fw-bold: 700;
+  --img-bg: url("../images/bg-dark.png");
+  --color-primary: hsl(0, 0%, 98%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-page-bg: hsl(235, 21%, 11%);
+  --color-card-bg: hsl(235, 24%, 19%);
+  --color-blue: hsl(220, 98%, 61%);
+  --color-green: hsl(192, 100%, 67%);
+  --color-red: hsl(10, 100%, 50%);
+  --color-pink: hsl(280, 87%, 65%);
+  --color-gb-1: hsl(236, 33%, 92%);
+  --color-gb-2: hsl(234, 39%, 75%);
+  --color-gb-3: hsl(234, 11%, 52%);
+  --color-gb-4: hsl(237, 12%, 36%);
+  --color-gb-5: hsl(233, 14%, 35%);
+  --color-gb-6: hsl(235, 19%, 24%);
+  --color-loader-1: rgba(0, 0, 0, 0.5);
+  --color-box-shadow: hsl(0, 0%, 0%, 0.1);
+}
+
+/* CHANGE CUSTOM PROPERTIES WHEN LIGHT THEME */
+
+body.light {
+  --img-bg: url("../images/bg-light.png");
+  --color-primary: hsl(243, 12%, 30%);
+  --color-page-bg: hsl(0, 0%, 98%);
+  --color-card-bg: hsl(0, 0%, 100%);
+  --color-gb-1: hsl(240, 8%, 24%);
+  --color-gb-2: hsl(243, 12%, 30%);
+  --color-gb-3: hsl(252, 6%, 83%);
+  --color-gb-4: hsl(237, 10%, 64%);
+  --color-gb-5: hsl(252, 9%, 73%);
+  --color-gb-6: hsl(252, 21%, 94%);
+  --color-loader-1: rgba(255, 255, 255, 0.5);
+}
+
+/* RESETS */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--ff-sans);
+}
+
+html {
+  font-size: 62.5%;
+  position: relative;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  user-select: none;
+}
+
+/* BODY */
+
+body {
+  font: var(--fw-normal) var(--base-font) var(--ff-sans);
+  background: var(--color-page-bg) var(--img-bg) no-repeat 0% 0% / 100vw 30rem;
+  padding-top: 8rem;
+  width: min(85%, 54rem);
+  margin: auto;
+}
+
+/* LAYER AND M HOVER*/
+.layer{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.form-m{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 12;
+    text-align: center;
+}
+
+.form-m .wrap{ 
+    text-align: center;
+    margin: 5rem auto 0 auto;
+}
+
+.form-m .wrap img{
+    height: 60px;
+    margin-left: -4.5rem;
+}
+
+.form-m form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-m form label{
+    display: block;
+    margin: .5rem 0;
+    color: var(--color-white);
+}
+
+.form-m form input{
+    padding: .9rem 1.5rem;
+    margin: .6rem 0;
+    border-radius: 50px;
+    color: var(--color-gb-5);
+    border: none;
+    background: var(--color-white);
+}
+
+.form-m form button{
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+    border-radius: 100%;
+    background: var(--color-blue);
+    color: var(--color-white);
+    margin: 3.2rem 0 0 .7rem;
+}
+
+/* slightly transparent fallback */
+.backdrop-blur {
+    background-color: rgba(255, 255, 255, .8);
+}
+
+/* if backdrop support: very transparent and blurred */
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    .backdrop-blur {
+        background-color: rgba(255, 255, 255, .0);
+        -webkit-backdrop-filter: blur(2em);
+        backdrop-filter: blur(2em);
+}
+}
+
+/* INPUT AND BUTTON */
+
+input,
+textarea,
+button {
+  font: inherit;
+  border: 0;
+  background: transparent;
+}
+
+input,
+textarea {
+  border-radius: 5px;
+  font-size: 1.5rem;
+  border: 1px solid var(--color-gb-5);
+}
+
+button {
+  display: flex;
+  user-select: none;
+}
+
+.btn{
+    padding: .45rem 1.5rem;
+    float: right;
+    cursor: pointer;
+    display: none;
+    border-radius: 4px;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+}
+
+.btn[currentMode]{
+    display: block;
+}
+
+input:focus,
+button:focus,
+textarea:focus {
+  outline: 0;
+}
+
+label {
+  color: var(--color-gb-4);
+  font-size: 1.5rem;
+}
+
+/* ALL ARE CARDS  */
+
+.card {
+  background-color: var(--color-card-bg);
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.9rem 2rem;
+  gap: 2rem;
+}
+
+.card .content{
+    width: 100%;
+}
+
+/* HEADER'S CARD */
+
+header.card {
+  background: transparent;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.3rem 1.5rem;
+  /* align-items: flex-start; */
+}
+
+header.card h1 {
+  color: var(--color-white);
+  letter-spacing: 0.2rem;
+  font-weight: 800;
+  font-family: var(--ff-sans);
+  font-size: calc(var(--base-font) * 2);
+}
+
+header.card button {
+  cursor: pointer;
+  height: 20px;
+}
+
+.head-title{
+    color: var(--color-white);
+    text-align: center;
+}
+
+/* CHECKBOX CONTAINER AND FIELD */
+
+.card .cb-container {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.1rem solid var(--color-gb-3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.card .cb-container .cb-input {
+  transform: scale(1.8);
+  opacity: 0;
+  width: 80px;
+}
+
+.card .cb-container .check {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  transition: background-color 0.2s ease;
+}
+
+.card .cb-container .cb-input:hover + .check{
+    background-color: var(--color-blue);
+}
+
+/* CHECKED CARD */
+
+.card .cb-container .cb-input:checked + .check {
+  background: url("../icons/icon-check.svg"), var(--color-blue);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ADD CARD */
+
+.add {
+  position: relative;
+  overflow: hidden;
+  margin: 4rem 0 2.5rem 0;
+  border-radius: 0.5rem;
+}
+
+.add .card-loader {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-ms-flex-align: center;
+align-items: center;
+background-color: var(--color-loader-1);
+z-index: 999;
+}
+
+.add .card-loader i {
+margin: 0 auto;
+color: #4099ff;
+font-size: 20px;
+}
+
+.add .rotate-refresh {
+-webkit-animation: mymove 0.8s infinite linear;
+animation: mymove 0.8s infinite linear;
+display: inline-block;
+}
+
+@-webkit-keyframes mymove {
+0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+}
+@keyframes mymove {
+0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+}
+
+.add .cb-container {
+  transition: background 0.3s ease;
+}
+
+.add .txt-container {
+  flex: 1;
+}
+
+.add .txt-container .form-group {
+  margin-bottom: 1rem;
+}
+
+.add .error-text {
+    color: var(--color-red);
+    font-size: 12px;
+}
+
+.add .txt-container .form-group span {
+    position: absolute;
+    right: 2.2rem;
+    margin-top: -2rem;
+}
+
+.add .txt-container .txt-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.7rem;
+  color: var(--color-gb-1);
+}
+
+body .add .txt-container .txt-input {
+  font-weight: var(--fw-normal);
+}
+
+.add .txt-container .txt-input::placeholder {
+  color: var(--color-gb-5);
+  font-weight: var(--fw-normal);
+}
+
+/* TODOS CONTAINER */
+
+.todos .card:first-child {
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.todos > * + * {
+  border-top: 0.2rem solid var(--color-gb-6);
+}
+
+.item {
+  flex: 1;
+  color: var(--color-gb-2);
+}
+
+.desc {
+  font-size: 1.2rem;
+  color: var(--color-gb-2);
+}
+
+.actions{
+  color: var(--color-gb-2);
+  cursor: pointer;
+}
+
+.item:hover,
+.actions:hover {
+  color: var(--color-gb-1);
+}
+
+body.light .todos {
+  box-shadow: 0 0 2rem 0.4rem var(--color-box-shadow);
+}
+
+/* COMPLETED ITEM */
+
+.todos .card.checked .item {
+  text-decoration: line-through;
+  color: var(--color-gb-3);
+  text-decoration-color: var(--color-gb-3);
+}
+
+/* CLEAR CONTAINER */
+
+.clear {
+  cursor: pointer;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.todos .card:hover .clear {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* STAT CONTAINER */
+
+.stat {
+  border-radius: 0 0 0.5rem 0.5rem;
+  border-top: 0.2rem solid var(--color-gb-6);
+  font-size: calc(var(--base-font) - 0.3rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.stat * {
+  color: var(--color-gb-4);
+}
+
+body.light .stat {
+  box-shadow: 0 1rem 2rem -0.4rem var(--color-box-shadow);
+}
+
+/* CORNERS */
+
+.stat .corner:last-child {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.stat .corner button:hover {
+  color: var(--color-primary);
+}
+
+/* FILTER BUTTONS */
+
+.stat .filter {
+  display: flex;
+  justify-content: space-between;
+  font-weight: var(--fw-bold);
+}
+
+.stat .filter *:hover {
+  color: var(--color-primary);
+}
+
+.stat .filter .on {
+  color: var(--color-blue);
+}
+
+.stat .filter :nth-child(2),
+.stat .filter :nth-child(3) {
+  margin: 0 0 0 1.2rem;
+}
+
+/* FOOTER */
+
+footer {
+  margin: 4rem 0;
+  text-align: center;
+  color: var(--color-gb-5);
+}
+
+/* JAVASCRIPT FUNCTIONS - STYLES */
+/* FILTER TODOS */
+
+.todos.active .card.checked,
+.todos.completed .card {
+  transition: 0.4s;
+  opacity: 0;
+  padding: 0;
+  border: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.todos.completed .card.checked {
+  opacity: 1;
+  padding: 1.9rem 2rem;
+  height: auto;
+  display: flex;
+  pointer-events: all;
+  transition: 0.4s;
+}
+
+.todos.completed > .card.checked ~ .card.checked {
+  border-top: 0.2rem solid var(--color-gb-6);
+}
+
+/* FALL ANIMATION */
+.todos .card.fall {
+  pointer-events: none;
+  animation: fall 0.2s forwards ease;
+}
+
+@keyframes fall {
+  0% {
+    opacity: 0.5;
+    transform: translateX(20%);
+  }
+  50% {
+    transform: translateX(25%) rotateZ(40deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(30%) rotateZ(90deg);
+    opacity: 0;
+  }
+}
+
+/* DRAG AND DROP */
+.todos .card.dragging {
+  opacity: 0.5;
+}
+
+@media (max-width: 599px) {
+  .stat {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5rem 2rem;
+  }
+  .stat .filter {
+    grid-row: 2/3;
+    grid-column: 1/3;
+    justify-content: space-around;
+    position: relative;
+  }
+}
+
+@media (max-width: 340px) {
+  header.card {
+    align-items: center;
+  }
+  header.card h1 {
+    font-size: calc(var(--base-font) * 1.5);
+  }
+}
