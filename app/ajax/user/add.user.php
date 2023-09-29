@@ -53,10 +53,14 @@
             
             }else{
                 header('location: ' . $config['Home'] . '?r=407');
-                
+
             }
 
+        }else{
+            header('location: ' . $config['Home']);
         }
 
+    }else{
+        header('location: ' . $config['Home']);
     }
 ?>
