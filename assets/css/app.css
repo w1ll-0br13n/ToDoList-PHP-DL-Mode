@@ -498,58 +498,6 @@ footer {
   color: var(--color-gb-5);
 }
 
-/* JAVASCRIPT FUNCTIONS - STYLES */
-/* FILTER TODOS */
-
-.todos.active .card.checked,
-.todos.completed .card {
-  transition: 0.4s;
-  opacity: 0;
-  padding: 0;
-  border: 0;
-  height: 0;
-  pointer-events: none;
-}
-
-.todos.completed .card.checked {
-  opacity: 1;
-  padding: 1.9rem 2rem;
-  height: auto;
-  display: flex;
-  pointer-events: all;
-  transition: 0.4s;
-}
-
-.todos.completed > .card.checked ~ .card.checked {
-  border-top: 0.2rem solid var(--color-gb-6);
-}
-
-/* FALL ANIMATION */
-.todos .card.fall {
-  pointer-events: none;
-  animation: fall 0.2s forwards ease;
-}
-
-@keyframes fall {
-  0% {
-    opacity: 0.5;
-    transform: translateX(20%);
-  }
-  50% {
-    transform: translateX(25%) rotateZ(40deg);
-    opacity: 0.3;
-  }
-  100% {
-    transform: translateX(30%) rotateZ(90deg);
-    opacity: 0;
-  }
-}
-
-/* DRAG AND DROP */
-.todos .card.dragging {
-  opacity: 0.5;
-}
-
 @media (max-width: 599px) {
   .stat {
     grid-template-columns: 1fr 1fr;
