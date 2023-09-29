@@ -1,4 +1,4 @@
-# PHP Challenge: To-Do List Application
+# PHP Challenge
 
 ## TODO LIST PHP-MySQL [:link:][link]
 
@@ -9,6 +9,7 @@
 - Open the config file (located at app/config.php): change your "Home" path to the path of application.
 - Open the helper (located at app/helpers/helpers.php): Put you current database credentials and configurations.
 - It is all done. Just copy and paste the previous home link of the application on your browser.
+- Live demo: https://mozartdevs.com/todo-list
 
 ### Full screenshots
 
