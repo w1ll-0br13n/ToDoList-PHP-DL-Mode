@@ -19,8 +19,8 @@
                 $config['Databases'][0], // Choose todolist database
                 "users", 
                 null, 
-                [$username], 
-                ['(username = ?)']
+                [$username, $userIp, $userTerminal], 
+                ['username = ?', 'ip_address = ?', 'device = ?']
             );
 
             if(!$usernameExist->exist()){
@@ -53,6 +53,7 @@
             
             }else{
                 header('location: ' . $config['Home'] . '?r=407');
+                
             }
 
         }
